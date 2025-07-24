@@ -1,6 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   output: 'standalone',
+  basePath: '/tetris-game',
+  assetPrefix: '/tetris-game',
   eslint: {
     ignoreDuringBuilds: true,
   },

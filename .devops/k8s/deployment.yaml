@@ -39,10 +39,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: patrick.dev.br/tetris-game
+    - host: patrick.dev.br
       http:
         paths:
-          - path: /
+          - path: /tetris-game
             pathType: Prefix
             backend:
               service:
