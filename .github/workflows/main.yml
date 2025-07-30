@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-frontend:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -58,6 +58,7 @@ jobs:
             ${{ secrets.DOCKER_REGISTRY_URL }}/tetris-game:${{ github.sha }}  
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -74,7 +75,7 @@ jobs:
         with:
           name: kubernetes
           namespace: cicd
-          # private-cluster: true
+          private-cluster: true
           action: deploy
           manifests: |
             ./.devops/k8s/deployment.yaml
