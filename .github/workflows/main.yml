@@ -70,7 +70,7 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
       - name: Deploy to the Kubernetes cluster
-        uses: azure/k8s-deploy@v4
+        uses: azure/k8s-deploy@v5
         with:
           name: kubernetes
           namespace: default
