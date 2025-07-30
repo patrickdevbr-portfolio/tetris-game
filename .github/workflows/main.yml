@@ -75,7 +75,6 @@ jobs:
         with:
           name: kubernetes
           namespace: cicd
-          private-cluster: true
           action: deploy
           manifests: |
             ./.devops/k8s/deployment.yaml
