@@ -72,11 +72,9 @@ jobs:
       - name: Deploy to the Kubernetes cluster
         uses: azure/k8s-deploy@v5
         with:
-          name: kubernetes
-          namespace: default
-          private-cluster: true
+          # name: kubernetes
+          # namespace: default
+          # private-cluster: true
           action: deploy
           manifests: |
             ./.devops/k8s/deployment.yaml
-          images: |
-            ${{ secrets.DOCKER_REGISTRY_URL }}/tetris-game:${{ github.sha }}
