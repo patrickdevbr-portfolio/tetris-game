@@ -71,6 +71,6 @@ jobs:
         with:
           namespace: default
           manifests: |
-            .devops/k8s/deployment.yaml
+            ./.devops/k8s/deployment.yaml
           images: |
             ${{ secrets.DOCKER_REGISTRY_URL }}/tetris-game:${{ github.sha }}
