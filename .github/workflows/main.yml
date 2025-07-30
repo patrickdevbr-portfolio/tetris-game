@@ -8,9 +8,7 @@ on:
 jobs:
   build-frontend:
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -57,4 +55,22 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_REGISTRY_URL }}/tetris-game:latest
+            ${{ secrets.DOCKER_REGISTRY_URL }}/tetris-game:${{ github.sha }}  
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - name: Deploy to the Kubernetes cluster
+        uses: azure/k8s-deploy@v5
+        with:
+          namespace: default
+          manifests: |
+            .devops/k8s/deployment.yaml
+          images: |
             ${{ secrets.DOCKER_REGISTRY_URL }}/tetris-game:${{ github.sha }}
